@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="search-form">
+    <form action="/search" method="GET" class="d-flex">
+        <input type="text" name="q" class="form-control me-2" placeholder="Search contacts..." value="{{ search_query or '' }}">
+        <button type="submit" class="btn btn-outline-primary">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+</div>
+
+{% if contacts %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for contact in contacts %}
+    <div class="col">
+        <div class="card h-100 contact-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="card-title">{{ contact.name }}</h5>
+                    <div class="btn-group">
+                        <a href="/edit/{{ contact.id }}" class="btn btn-sm btn-outline-primary me-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="/delete/{{ contact.id }}" class="btn btn-sm btn-outline-danger" 
+                           onclick="return confirm('Are you sure you want to delete this contact?')">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="card-text mb-1">
+                    <i class="fas fa-phone text-muted me-2"></i>{{ contact.phone }}
+                </p>
+                {% if contact.email %}
+                <p class="card-text mb-1">
+                    <i class="fas fa-envelope text-muted me-2"></i>{{ contact.email }}
+                </p>
+                {% endif %}
+                {% if contact.address %}
+                <p class="card-text">
+                    <i class="fas fa-map-marker-alt text-muted me-2"></i>{{ contact.address }}
+                </p>
+                {% endif %}
+            </div>
+            <div class="card-footer text-muted small">
+                Added: {{ contact.created_at }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info text-center">
+    {% if search_query %}
+    No contacts found matching "{{ search_query }}".
+    <a href="/" class="alert-link">Show all contacts</a>
+    {% else %}
+    No contacts found. <a href="/add" class="alert-link">Add your first contact!</a>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %} 

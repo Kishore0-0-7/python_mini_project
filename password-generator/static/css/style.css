@@ -1,0 +1,65 @@
+/* Custom styles for the Password Generator app */
+
+body {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.password-display {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+/* Password table styling */
+.password-masked {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+.password-dots {
+    letter-spacing: 2px;
+}
+
+.password-text {
+    word-break: break-all;
+}
+
+/* Button styles */
+.copy-btn, .show-hide-btn, .copy-saved-btn {
+    transition: all 0.2s ease;
+}
+
+.copy-btn:hover, .show-hide-btn:hover, .copy-saved-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.9rem;
+    }
+    
+    .btn-sm {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.7rem;
+    }
+} 
